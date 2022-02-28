@@ -13,7 +13,7 @@ router.get('/', isAuthenticated, async (req, res) => {
     })
 })
 
-router.get('premium/add', isAuthenticated, async (req, res) => {
+router.get('/premium/add', isAuthenticated, async (req, res) => {
     let { username } = req.user
     if (username !== myusername) return res.redirect('/docs')
     res.render('premium/add', {
@@ -21,7 +21,7 @@ router.get('premium/add', isAuthenticated, async (req, res) => {
     });
 });
 
-router.post('premium/add', isAuthenticated, async (req, res) => {
+router.post('/premium/add', isAuthenticated, async (req, res) => {
     let { username, expired, customKey, token } = req.body;
     if (token != tokens) {
         req.flash('error_msg', 'Invalid Token');
