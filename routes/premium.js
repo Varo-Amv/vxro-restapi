@@ -1,6 +1,6 @@
 const express = require('express');
-const { checkUsername, resetAllLimit } = require('../database/debe');
-const { addPremium, deletePremium, tokens, checkPremium, changeKey, resetOneLimit, resetTodayReq } = require('../database/premium');
+const { checkUsername, resetAllLimit } = require('./database/debe');
+const { addPremium, deletePremium, tokens, checkPremium, changeKey, resetOneLimit, resetTodayReq } = require('./database/premium');
 const { isAuthenticated } = require('../lib/auth');
 const { limitCount } = require('../lib/settings');
 const router = express.Router();
@@ -13,7 +13,7 @@ router.get('/', isAuthenticated, async (req, res) => {
     })
 })
 
-router.get('/premium/add', isAuthenticated, async (req, res) => {
+router.get('/add', isAuthenticated, async (req, res) => {
     let { username } = req.user
     if (username !== myusername) return res.redirect('/docs')
     res.render('premium/add', {
@@ -21,7 +21,7 @@ router.get('/premium/add', isAuthenticated, async (req, res) => {
     });
 });
 
-router.post('/premium/add', isAuthenticated, async (req, res) => {
+router.post('/add', isAuthenticated, async (req, res) => {
     let { username, expired, customKey, token } = req.body;
     if (token != tokens) {
         req.flash('error_msg', 'Invalid Token');
