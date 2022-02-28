@@ -93,8 +93,6 @@
     "tailwindcss": "^2.2.19",
     "tiktok-scraper": "^1.4.12",
     "urlencode": "^1.1.0",
-    "yt-search": "^2.10.3",
-    "ytdl-core": "^4.10.0",
     "canvacord": "^5.2.3",
     "miniget": "^4.2.1",
     "m3u8stream": "^0.8.4",
