@@ -5,7 +5,6 @@ const { User } = require('./model');
         let obj = { username, password, apikey, defaultKey: apikey, premium: null, limit: limitCount, totalreq: TotalReq };
         User.create(obj);
     }
-    module.exports.addUser = addUser
 
     async function checkUsername(username) {
         let users = await User.findOne({username: username});
@@ -15,13 +14,11 @@ const { User } = require('./model');
             return false;
         }
     }
-    module.exports.checkUsername = checkUsername;
 
     async function getApikey(id) {
         let users = await User.findOne({_id: id});
         return {apikey: users.apikey, username: users.username};
     }
-    module.exports.getApikey = getApikey;
 
     async function cekKey(apikey) {
         let db = await User.findOne({apikey: apikey});
@@ -31,7 +28,6 @@ const { User } = require('./model');
             return db.apikey;
         }
     }
-    module.exports.cekKey = cekKey;
 
     async function limitAdd(apikey) {
         let key = await User.findOne({apikey: apikey});
@@ -40,13 +36,11 @@ const { User } = require('./model');
             if (err) throw err;
         })
     }
-    module.exports.limitAdd = limitAdd
 
     async function checkLimit(apikey) {
         let key = await User.findOne({apikey: apikey});
         return key.limit;
     }
-    module.exports.checkLimit = checkLimit;
 
     async function isLimit(apikey) {
         let key = await User.findOne({apikey: apikey});
@@ -56,7 +50,6 @@ const { User } = require('./model');
             return false;
         }
     }
-    module.exports.isLimit = isLimit
 
     async function resetAllLimit() {
         let users = await User.find({});
@@ -73,4 +66,11 @@ const { User } = require('./model');
             }
         })
     }
+    module.exports.addUser = addUser;
+    module.exports.checkUsername = checkUsername;
+    module.exports.cekKey = cekKey;
+    module.exports.getApikey = getApikey;
+    module.exports.limitAdd = limitAdd;
+    module.exports.checkLimit = checkLimit;
+    module.exports.isLimit = isLimit;
     module.exports.resetAllLimit = resetAllLimit
