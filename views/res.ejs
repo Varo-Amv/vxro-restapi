@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Result</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+  <link rel="stylesheet" href="/storage/css/style.css"/>
+</head>
+<body>
+  <div class="card" style="width: 35rem;">
+  <div class="card-body">
+    <h5 class="card-title text-header">Storage</h5>
+    <div class="form-group">
+    <label for="exampleInputEmail1">File Name</label>
+    <input class="form-control" value="<%= filename %>" disabled>
+  </div>
+   <div class="form-group">
+    <label for="exampleInputEmail1">Size</label>
+    <input class="form-control" value="<%= size %>" disabled>
+  </div>
+   <div class="input-group mb-3">
+  <input type="text" class="form-control" value="<%= url %>" id="url" disabled>
+  <div class="input-group-append">
+
+ <button class="btn btn-outline-secondary" type="button" id="copy" onclick="myFunction()"><i class="far fa-copy"></i></button>
+ 
+  </div>
+</div>
+  <a href="/storage"><button type="submit" class="btn btn-primary">Back To Home</button></a>
+  <a href="/all"><button type="submit" class="btn btn-primary">Storage Files</button></a>
+  </div>
+</div>
+
+<script src="/storage/js/copy.js"></script>
+</body>
+</html>

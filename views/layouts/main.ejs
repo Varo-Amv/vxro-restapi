@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="A REST APIs website that provides a wide variety of features for developers.">
+<meta name="robots" content="archive, follow, imageindex, index, odp, snippet, translate">
+<meta name="author" content="VXRO">
+<title>Vxro - Rest API</title>
+<meta property="og:site_name" name="og:site_name" content="Vxro - Website API">
+<meta property="og:title" name="og:title" content="Vxro - Rest API">
+<meta property="og:url" name="og:url" content="https://webVxro.xyz/">
+<meta property="og:video" name="og:video" content="https://storage.webVxro.xyz/all/WebVxro.mp4">
+<meta property="og:description" name="og:description" content="A REST APIs website that provides a wide variety of features for developers.">
+<link rel="shortcut icon" type="video/x-icon" href="https://storage.webVxro.xyz/all/WebVxro.mp4">
+<link rel="icon" type="video/mp4" href="https://storage.webVxro.xyz/all/WebVxro.mp4">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileVideo" content="https://storage.webVxro.xyz/all/WebVxro.mp4">
+<meta name="theme-color" content="#ffffff">
+<link rel="canonical" href="https://webVxro.xyz/">
+  <!--     Fonts and icons     -->
+  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
+  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+  <!-- Nucleo Icons -->
+  <link href="/css/nucleo-icons.css" rel="stylesheet" />
+  <!-- CSS Files -->
+  <link href="/static/css/black-dashboard.min.css" rel="stylesheet" />
+  <!-- CSS Just for demo purpose, don't include it in your project -->
+  <link href="/demo/demo.css" rel="stylesheet" />
+<link rel="stylesheet" href="/static/fontawesome5/css/all.min.css">
+<script src="https://cdn.lordicon.com/libs/mssddfmo/lord-icon-2.1.0.js"></script>
+  <link href="/static/css/style.css" rel="stylesheet" />
+<audio id="audio" autoplay loop></audio>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<style type="text/css">
+  .loading {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    position: fixed
+  }
+  .animasi {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    display: flex;
+    font-size: 5vh;
+    font-weight: bolder;
+    align-items: center;
+    font-family: monospace;
+    justify-content: center;
+    background-color: #000000
+  }
+  .animasi span {
+    animation: pulse 0.5s alternate infinite ease-in-out;
+  }
+  .animasi span:nth-child(odd) {
+    animation-delay: 0.1s;
+  }
+  @keyframes pulse {
+    to {
+      transform: scale(0.9);
+      opacity: 2;
+    }
+  }
+  </style>
+</head>
+<div class="loading">
+<div class="animasi">
+<span><img src="//webVxro.xyz/assets/loanjing.svg" alt="Sabar Om Baru Loading, Orang Sabar Disayang Janda:>" /></span>
+</div>
+</div>
+
+<body class="dark-mode" data-background-color="dark">
+<div class="wrapper">
+<div class="sidebar">
+<div class="sidebar-wrapper">
+<div class="logo text-center">
+<a href="/" class="simple-text logo-normal" style="font-size: large;">
+Vxro - API
+</a>
+</div>
+<ul class="nav">
+<li>
+<a href="/docs">
+<i class="tim-icons icon-chart-pie-36"></i>
+<p>Dashboard</p>
+          </a>
+         </li>
+           <li>
+            <a href="/changelog">
+              <i class="fas fa-refresh"></i>
+            <p>Changelog</p>
+            </a>
+          </li>
+         <hr>
+          <li>
+            <a href="/downloader">
+              <i class="tim-icons icon-cloud-download-93"></i>
+              <p>Downloader</p>
+            </a>
+          </li>
+          <li>
+            <a href="/music">
+              <i class="fas fa-music"></i>
+              <p>Music</p>
+            </a>
+          </li>
+          <li>
+            <a href="/islam">
+              <i class="tim-icons icon-bulb-63"></i>
+              <p>Islam</p>
+            </a>
+          </li>
+          <li>
+            <a href="/asupan">
+              <i class="fa fa-coffee"></i>
+              <p>Asupan</p>
+            </a>
+          </li>
+          <li>
+            <a href="/nsfw">
+              <i class="fas fa-exclamation-triangle"></i>
+              <p>NSFW</p>
+            </a>
+          </li>
+          <li>
+            <a href="/gacha">
+              <i class="fas fa-fire"></i>
+              <p>Gacha Cewe</p>
+            </a>
+          </li>
+          <li>
+            <a href="/random">
+              <i class="tim-icons icon-image-02"></i>
+              <p>Random Image</p>
+            </a>
+          </li>
+          <li>
+            <a href="/editor">
+              <i class="far fa-bookmark"></i>
+              <p>Image Editor</p>
+            </a>
+          </li>
+          <li>
+            <a href="/maker">
+              <i class="fas fa-fw fa-images"></i>
+              <p>Image Maker</p>
+            </a>
+          </li>
+          <li>
+            <a href="/photooxy">
+              <i class="fas fa-fw fa-images"></i>
+              <p>Photooxy</p>
+            </a>
+          </li>
+          <li>
+            <a href="/canvas">
+              <i class="tim-icons icon-palette"></i>
+              <p>Canvas</p>
+            </a>
+          </li>
+          <li>
+            <a href="/textpro">
+              <i class="tim-icons icon-align-center"></i>
+              <p>Textpro</p>
+            </a>
+          </li>
+          <li>
+            <a href="/anime">
+              <i class="tim-icons icon-planet"></i>
+              <p>Anime</p>
+            </a>
+          </li>
+          <li>
+            <a href="/fun">
+              <i class="fas fa-smile"></i>
+              <p>Fun</p>
+            </a>
+          </li>
+          <li>
+            <a href="/tools">
+              <i class="fas fa-wrench"></i>
+              <p>Tools</p>
+            </a>
+          </li>
+          <li>
+            <a href="/other">
+              <i class="fab fa-fw fa-wpforms"></i>
+              <p>Other</p>
+            </a>
+          </li>
+          <hr>
+           <li>
+            <a href="/users/login">
+              <i class="fas fa-sign-in-alt"></i>
+              <p>Login</p>
+           </a>
+          </li>
+           <li>
+            <a href="/users/register">
+              <i class="fas fa-user-plus"></i>
+              <p>Register</p>
+           </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+<div class="main-panel">
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent">
+<div class="container-fluid">
+<div class="navbar-wrapper">
+<div class="navbar-toggle d-inline">
+<button type="button" class="navbar-toggler">
+<span class="navbar-toggler-bar bar1"></span>
+<span class="navbar-toggler-bar bar2"></span>
+<span class="navbar-toggler-bar bar3"></span>
+</button>
+</div>
+<a class="navbar-brand" href="javascript:void(0)">Dashboard</a>
+</div>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-bar navbar-kebab"></span>
+<span class="navbar-toggler-bar navbar-kebab"></span>
+<span class="navbar-toggler-bar navbar-kebab"></span>
+</button>
+<div class="collapse navbar-collapse" id="navigation">
+<ul class="navbar-nav ml-auto">
+<li class="search-bar input-group">
+<button class="btn btn-link" id="search-button" data-toggle="modal" data-target="/search"><i class="tim-icons icon-zoom-split" ></i>
+<span class="d-lg-none d-md-block">Search</span>
+</button>
+</li>
+<li class="dropdown nav-item">
+<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+<div class="photo">
+<img src="https://i.ibb.co/dPDYP5k/e25735b17a39.png" alt="Profile Photo">
+</div>
+<b class="caret d-none d-lg-block d-xl-block"></b>
+<p class="d-lg-none">
+Game
+</p>
+</a>
+<ul class="dropdown-menu dropdown-navbar">
+<li class="nav-link"><a href="https://game.webVxro.xyz" class="nav-item dropdown-item">Click Disini</a></li>
+</ul>
+</li>
+<li class="dropdown nav-item">
+<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+<div class="photo">
+<img src="https://i.ibb.co/dPDYP5k/e25735b17a39.png" alt="Profile Photo">
+</div>
+<b class="caret d-none d-lg-block d-xl-block"></b>
+<p class="d-lg-none">
+Contact
+</p>
+</a>
+<ul class="dropdown-menu dropdown-navbar">
+<li class="nav-link"><a href="https://github.com/Varo-Amv" class="nav-item dropdown-item">Github</a></li>
+<li class="nav-link"><a href="https://instagram.com/vxro.bot" class="nav-item dropdown-item">Instagram</a></li>
+<li class="nav-link"><a href="https://youtube.com/channel/UCHyJ8TSAQERelT_eUwZq2dg" class="nav-item dropdown-item">YouTube</a></li>
+</ul>
+</li>
+              <li class="separator d-lg-none"></li>
+           </ul>
+		</div>
+	</div>
+		</nav>
+	<div class="modal modal-search fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModal" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+	<div class="modal-content">
+<div class="modal-header">
+<input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Search">
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<i class="tim-icons icon-simple-remove"></i>
+</button>
+</div>
+</div>
+</div>
+</div>
+<a style='display:scroll;position:fixed;bottom:547px;right:0;'><img src='https://i.ibb.co/Xtbnpvz/cctv-kanan.gif'/></a>
+      <!-- End Navbar -->
+            <%- body %> 
+      <!-- End Navbar -->
+<footer class="footer">
+        <div class="container-fluid">
+          <ul class="nav">
+            <li class="nav-item">
+              <a href="https://instagram.com/vxro.bot" class="nav-link">
+                Instagram
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://wa.me/6289516998339" class="nav-link">
+                WhatsApp
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://youtube.com/channel/UCHyJ8TSAQERelT_eUwZq2dg" class="nav-link">
+                YouTube
+              </a>
+            </li>
+          </ul>
+          <div class="copyright">
+            ©
+            <script>
+              document.write(new Date().getFullYear())
+            </script> Made With <i class="tim-icons icon-heart-2"></i> By
+            <a href="javascript:void(0)" target="_blank">Nathan & ZyxMapLe & Vxro</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+</div>
+  <!--   Core JS Files   -->
+  <script src="/js/core/jquery.min.js"></script>
+  <script src="/js/core/popper.min.js"></script>
+  <script src="/js/core/bootstrap.min.js"></script>
+  <script src="/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <script src="/js/tol.js"></script>
+  <!--  Google Maps Plugin    -->
+  <!-- Place this tag in your head or just before your close body tag. -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+  <!-- Chart JS -->
+  <script src="/js/plugins/chartjs.min.js"></script>
+  <!--  Notifications Plugin    -->
+  <script src="/js/plugins/bootstrap-notify.js"></script>
+  <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="/js/black-dashboard.min.js?v=1.0.0"></script><!-- Black Dashboard DEMO methods, don't include it in your project! -->
+  <script src="/demo/demo.js"></script>
+  <script>
+    $(document).ready(function() {
+      // Javascript method's body can be found in js/demos.js
+      demo.initDashboardPageCharts();
+
+    });
+  </script>
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+    window.TrackJS &&
+      TrackJS.install({
+        token: "ee6fab19c5a04ac1a32a645abde4613a",
+        application: "black-dashboard-free"
+      });
+  </script>
+    <script> 
+  	$.getJSON("https://api.countapi.xyz/hit/zerochanbot.herokuapp.com/visits",
+	function(data) {
+	$("#visitor").html(data.value);
+	})
+	</script>
+	<script>
+		$.getJSON("https://api.ipify.org?format=json",
+		function(data) {
+			$("#ipaddres").html(data.ip)
+			})
+			</script>
+			<script>
+				// Akhir Hitungan Mundur
+				var countDownDate = new Date("Jan 3, 2022 00:00:00").getTime();
+				// Update Hitungan Mundur Setiap 1 Detik
+				var x = setInterval(function() {
+					// Mengambil Tanggal Dan Waktu
+					var now = new Date().getTime();
+					// Find the distance between now and the count down date
+					var distance = countDownDate - now;
+					// Kalkulator Waktu Hari, Jam, Menit, Detik 
+					var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+					var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+					var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+					var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+					// Menampilkan Hasil Di Dalam element Menggunakan id="time"
+					document.getElementById("time").innerHTML = days + " Hari " + hours + " Jam " + minutes + " Menit " + seconds + " Detik ";
+					// Ketika countdown timer sudah berakhir Maka Tulisan Berakhir
+					if (distance < 0) {
+						clearInterval(x);
+						document.getElementById("time").innerHTML = "Happy Birthday";
+					}
+				}, 1000);
+			</script>
+<script type="text/javascript">
+                    $(document).ready(function() {
+                        $(".loading").delay(2000).fadeOut(500, "linear");
+                    });
+                </script>
+<script type="text/javascript">
+      let audio = document.querySelector('#audio')
+      let url = ['https://b.top4top.io/m_2188ggdpn0.mp3','https://e.top4top.io/m_219596ubr0.mp3','https://f.top4top.io/m_2195p2of61.mp3','https://f.top4top.io/m_21957kiil0.mp3']
+      audio.src = url[Math.floor(Math.random() * url.length)]
+    </script>
+</body>
+
+</html>
