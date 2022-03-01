@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Snake</title>
+	<style>
+		#canvas{
+    border: 1px;
+    border-style: solid;
+    border-color: black;
+    display: block;
+}
+
+div{
+	display: inline-block;
+}
+</style>
+</head>
+<body>
+	<canvas id = "canvas" width="600" height="600"></canvas>
+	Score: <span id = "score">0</span>
+</body>
+<script>
+function isCollision(snake) {
+	var head = snake.position[0];
+	var hit = false;
+	for(var i = 1;i < snake.position.length;i++) {
+		if((head[0] == snake.position[i][0]) && (head[1] == snake.position[i][1])) hit = true;
+	}
+	return hit;
+}
+</script>
+<script>
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+const WIDTH_CANVAS = 600;
+const HEIGHT_CANVAS = 600;
+const BLOCKSIZE = 15;
+const WIDTH_GAME = WIDTH_CANVAS / BLOCKSIZE;
+const HEIGHT_GAME = HEIGHT_CANVAS / BLOCKSIZE;
+const STARTX = 5;
+const STARTY = HEIGHT_GAME / 2;
+
+//FPS Const
+const FPS = 10;
+const FPS_INTERVAL = 1000 / FPS;
+
+//Movement Const
+const MOVE_UP = -1;
+const MOVE_DOWN = 1;
+const MOVE_LEFT = -1;
+const MOVE_RIGHT = 1;
+const X_STAY = 0;
+const Y_STAY = 0;
+
+//Keypress Const
+const KEYPRESSED_LEFT = 37;
+const KEYPRESSED_UP = 38;
+const KEYPRESSED_RIGHT = 39;
+const KEYPRESSED_DOWN = 40;
+const KEYPRESSED_A = 65;
+const KEYPRESSED_D = 68;
+const KEYPRESSED_S = 83;
+const KEYPRESSED_W = 87;
+
+//Color Const
+const FOOD_COLOR = "red";
+const BACKGROUND_COLOR = "white";
+const SNAKE_COLOR = "black";
+
+//Menu Const
+const MAIN_MENU = 1;
+const IN_GAME = 2;
+const DEAD = 3;
+
+//Button Const
+const LEFTSIDE = 180;
+const UPSIDE = 200;
+const HEIGHT_BOX = 140;
+const WIDTH_BOX = 175;
+const OFFSET = 30;
+</script>
+<script>
+function drawSnakeBody(x, y){
+	ctx.fillStyle = SNAKE_COLOR;
+	ctx.fillRect(x * BLOCKSIZE, y * BLOCKSIZE, BLOCKSIZE, BLOCKSIZE);
+	ctx.strokeStyle = BACKGROUND_COLOR;
+	ctx.strokeRect(x * BLOCKSIZE, y * BLOCKSIZE, BLOCKSIZE, BLOCKSIZE);
+}
+
+function eraseSnakeBody(x, y){
+	ctx.fillStyle = BACKGROUND_COLOR;
+	ctx.fillRect(x * BLOCKSIZE, y * BLOCKSIZE, BLOCKSIZE, BLOCKSIZE);
+	ctx.strokeStyle = BACKGROUND_COLOR;
+	ctx.strokeRect(x * BLOCKSIZE, y * BLOCKSIZE, BLOCKSIZE, BLOCKSIZE);
+}
+
+function drawFood(x, y) {
+	ctx.beginPath();
+    ctx.arc(x * BLOCKSIZE + BLOCKSIZE/2, y * BLOCKSIZE + BLOCKSIZE/2, BLOCKSIZE/2, 0, 2 * Math.PI);
+    ctx.stroke();
+    ctx.fillStyle = FOOD_COLOR;
+    ctx.fill();
+}
+
+function drawInitalBody(snake) {
+	for(var snakeBody of snake.position) {
+		drawSnakeBody(snakeBody[0], snakeBody[1]);
+	}
+}
+
+function clearScreen() {
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+function displayMainMenu() {
+	clearScreen();
+	ctx.fillStyle = SNAKE_COLOR;
+	ctx.font = "30px Arial";
+	ctx.fillText("WELCOME To SNAKE", LEFTSIDE, UPSIDE);
+	ctx.font = "20px Arial";
+	ctx.fillText("PRESS W/A/S/D or", LEFTSIDE, UPSIDE + OFFSET);
+	ctx.fillText("Arrow key to change direction", LEFTSIDE, UPSIDE + 2 * OFFSET);
+	ctx.font = "20px Arial";
+	ctx.fillText("PLAY GAME", LEFTSIDE + OFFSET / 2, UPSIDE + 4 * OFFSET);
+	ctx.strokeStyle = SNAKE_COLOR;
+	ctx.strokeRect(LEFTSIDE, UPSIDE + 3 * OFFSET, WIDTH_BOX, HEIGHT_BOX / 2);
+}
+
+function deadScreen() {
+	clearScreen();
+	ctx.font = "30px Arial";
+	ctx.fillText("YOU ARE DEAD", LEFTSIDE, UPSIDE);
+	var result = "Score " + score;
+	ctx.fillText(result, LEFTSIDE, UPSIDE + OFFSET);
+	ctx.font = "20px Arial";
+	ctx.fillText("BACK TO MAIN", LEFTSIDE + OFFSET / 2, UPSIDE + 4 * OFFSET);
+	ctx.strokeStyle = SNAKE_COLOR;
+	ctx.strokeRect(LEFTSIDE, UPSIDE + 3 * OFFSET, WIDTH_BOX, HEIGHT_BOX / 2);
+}
+</script>
+<script>
+function Food() {
+	this.x = WIDTH_GAME - STARTX;
+	this.y = STARTY;
+	drawFood(this.x, this.y);
+	this.ateBySnake = function(snake) {
+		var head = snake.position[0];
+		return ((this.x == head[0]) && (this.y == head[1]));
+	}
+	this.generate = function(snake) { //randomly generate possible position for new food
+		var init = [];
+		for(var i = 0;i < WIDTH_GAME;i++) {
+			var tmp = new Array(HEIGHT_GAME);
+			init.push(tmp);
+		}
+		var total = WIDTH_GAME * HEIGHT_GAME;
+		for(var snakeBody of snake.position) {
+			init[snakeBody[0]][snakeBody[1]] = 1;
+			total--;
+		}
+		var num = Math.floor(Math.random() * total);
+		for(var x = 0;x < WIDTH_GAME;x++) {
+			for(var y = 0;y < HEIGHT_GAME;y++) {
+				if(init[x][y] == 1) continue;
+				if(num == 0) {
+					this.x = x;
+					this.y = y;
+					drawFood(this.x, this.y);
+					return ;
+				}
+				num--;
+			}
+		}
+	}
+}
+</script>
+<script>
+function Snake() {
+	this.position = [[STARTX, STARTY], [STARTX - 1, STARTY], [STARTX - 2, STARTY]];
+	this.directionX = 1;
+	this.directionY = 0;
+	drawInitalBody(this);
+	this.addBody = function() {
+		var head = this.position[0];
+		var newX = (this.directionX + head[0] + WIDTH_GAME) % WIDTH_GAME;
+		var newY = (this.directionY + head[1] + HEIGHT_GAME) % HEIGHT_GAME;
+		drawSnakeBody(newX, newY);
+		this.position.unshift([newX, newY]);
+	}
+	this.eraseBody = function() {
+		var tail = this.position.pop();
+		eraseSnakeBody(tail[0], tail[1]);
+	}
+}
+</script>
+<script>
+document.addEventListener('keydown', function(event){
+	if((event.keyCode == KEYPRESSED_W || event.keyCode == KEYPRESSED_UP) && snake.directionY != MOVE_DOWN) { //w character pressed and snake doesn't move down, move up
+		snake.directionX = X_STAY;
+		snake.directionY = MOVE_UP;
+	} else if((event.keyCode == KEYPRESSED_S || event.keyCode == KEYPRESSED_DOWN)  && snake.directionY != MOVE_UP) { //s character pressed, move down
+		snake.directionX = X_STAY;
+		snake.directionY = MOVE_DOWN;
+	} else if((event.keyCode == KEYPRESSED_A || event.keyCode == KEYPRESSED_LEFT)  && snake.directionX != MOVE_RIGHT) { //a character pressed, move left
+		snake.directionX = MOVE_LEFT;
+		snake.directionY = Y_STAY;
+	} else if((event.keyCode == KEYPRESSED_D || event.keyCode == KEYPRESSED_RIGHT)  && snake.directionX != MOVE_LEFT) { //d character pressed, move right
+		snake.directionX = MOVE_RIGHT;
+		snake.directionY = Y_STAY;
+	}
+});
+</script>
+<script>
+document.addEventListener('click', function(event){
+
+	var rect = canvas.getBoundingClientRect();
+	mouseX = event.clientX - rect.left;
+	mouseY = event.clientY - rect.top;
+	if(game_state == DEAD && LEFTSIDE <= mouseX && mouseX <= LEFTSIDE + WIDTH_BOX && UPSIDE + 3 * OFFSET <= mouseY && mouseY <= UPSIDE + HEIGHT_BOX) game_state = MAIN_MENU;
+	else if(game_state == MAIN_MENU && LEFTSIDE <= mouseX && mouseX <= LEFTSIDE + WIDTH_BOX && UPSIDE + 3 * OFFSET <= mouseY && mouseY <= UPSIDE + HEIGHT_BOX) game_state = IN_GAME, firstPressed = 1;
+});
+</script>
+<script>
+var time = Date.now();
+var snake;
+var food;
+var score;
+var game_state = MAIN_MENU;
+var firstPressed = 0;
+
+window.onload = function() {
+	requestAnimationFrame(gameStart);
+}
+
+function resetGame() {
+	clearScreen();
+	time = Date.now();
+	snake = new Snake();
+	food = new Food();
+	score = 0;
+	document.getElementById("score").innerHTML = score;
+}
+
+function gameStart() {
+	requestAnimationFrame(gameStart);
+	if(game_state == MAIN_MENU) {
+		displayMainMenu();
+	} else if(game_state == IN_GAME && firstPressed == 1) {
+		resetGame();
+		firstPressed = 0;
+	} else if(game_state == IN_GAME) {
+		var current_time = Date.now();
+		var elapsed = current_time - time;
+		if(elapsed > FPS_INTERVAL) {
+			time = current_time - (elapsed % FPS_INTERVAL);
+			snake.addBody();
+			if(isCollision(snake) == true) {
+				game_state = DEAD;
+				return ;
+			}
+			if(food.ateBySnake(snake) == true) {
+				food.generate(snake);
+				score++;
+				document.getElementById("score").innerHTML = score;
+			}
+			else snake.eraseBody();
+		}
+	} else if(game_state == DEAD){
+		deadScreen();
+	}
+}
+</script>
+</html>
