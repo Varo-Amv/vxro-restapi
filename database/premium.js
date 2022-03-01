@@ -110,6 +110,7 @@ module.exports.tokens = tokens
 
     async function addRequest() {
         let db = await Utils.find({})
+        Utils.updateOne({util: 'util'}, {total: 1, today: 1})
         let addOneToday = db[0].today += 1
         let addOneTotal = db[0].total += 1
         Utils.updateOne({util: 'util'}, {total: addOneTotal, today: addOneToday}, (err, res) => {
