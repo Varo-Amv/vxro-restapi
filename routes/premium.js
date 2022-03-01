@@ -126,7 +126,7 @@ router.post('/resetall', isAuthenticated, async (req, res) => {
     let { token } = req.body;
     if (token != tokens) {
         req.flash('error_msg', 'Invalid Token');
-        return res.redirect('/premium/resetall');
+        return res.redirect('/premium');
     } else {
         resetAllLimit();
         resetTodayReq();
