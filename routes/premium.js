@@ -39,7 +39,7 @@ router.post('/add', isAuthenticated, async (req, res) => {
         } else {
             addPremium(username, customKey, expired)
             req.flash('success_msg', `Success Added Premium ${username}`);
-            res.redirect('/premium');
+            res.redirect('/premium/add');
         }
     }
 })
