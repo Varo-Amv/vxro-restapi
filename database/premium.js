@@ -2,8 +2,8 @@ const { User, Utils } = require('./model');
 const toMs = require('ms');
 const { limitCount, limitPremium } = require('../lib/settings');
 const tokens = 'Alvaro'
-let objdd = { total: 1, today: 1, visitor: 1, util: 'util'}
-Utils.create(objdd)
+//let objdd = { total: 1, today: 1, visitor: 1, util: 'util'}
+//Utils.create(objdd)
 module.exports.tokens = tokens
 
     async function addPremium(username, customKey, expired) {
