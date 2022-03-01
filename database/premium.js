@@ -71,7 +71,7 @@ module.exports.tokens = tokens
     module.exports.getTotalUser = getTotalUser
 
     async function addUtil() {
-        let obj = { total: 0, today: 0, visitor: 1, util: 'util'}
+        let obj = { total: 1, today: 1, visitor: 1, util: 'util'}
         Utils.create(obj)
     }
 
