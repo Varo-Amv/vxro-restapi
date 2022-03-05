@@ -172,7 +172,7 @@ app.get('/anime', isAuthenticated, async (req, res) => {
   res.render('anime', {
     limit: limit,
     username: username,
-    apikey: apikey,
+    apikey: `${apikey}`,
     layout: 'layouts/main'
   });
 });
